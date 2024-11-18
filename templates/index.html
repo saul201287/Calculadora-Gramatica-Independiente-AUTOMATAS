@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora con Árbol</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="calculator">
+      <input type="text" id="expression" placeholder="2*5+2" disabled />
+      <div class="buttons">
+        <button>(</button>
+        <button>)</button>
+        <button class="clear">C</button>
+        <button>/</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>*</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>-</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>+</button>
+        <button>0</button>
+        <button class="equal">=</button>
+        <button id="tree">Tree</button>
+      </div>
+    </div>
+
+    <div id="tree-container" class="tree-container">
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

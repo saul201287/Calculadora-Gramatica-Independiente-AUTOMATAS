@@ -1,0 +1,80 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+}
+
+.calculator {
+  background: #3a3a3a;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.calculator input {
+  width: 200px;
+  padding: 10px;
+  font-size: 22px;
+  text-align: right;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background: #2a2a2a;
+  color: white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  background: #4a4a4a;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+  background: #6a6a6a;
+}
+
+button.clear {
+  background: #e74c3c;
+  color: white;
+}
+
+button.equal {
+  background: #f39c12;
+  color: white;
+}
+
+button#tree {
+  background: #3498db;
+}
+
+.tree-container img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
