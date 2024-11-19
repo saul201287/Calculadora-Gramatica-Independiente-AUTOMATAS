@@ -29,6 +29,15 @@ function evaluate(expression) {
   }
 }
 
+document.getElementById("dot").addEventListener("click", () => {
+  const display = document.getElementById("display");
+  const currentValue = display.value;
+
+  if (!currentValue.includes(".")) {
+    display.value += ".";
+  }
+});
+
 treeButton.addEventListener("click", async () => {
   const expression = expressionInput.value;
 

@@ -6,7 +6,6 @@ import uuid
 
 app = Flask(__name__)
 
-# Tokens para la gramática
 tokens = (
     'NUMBER',
     'PLUS',
@@ -17,7 +16,6 @@ tokens = (
     'RPAREN',
 )
 
-# Definir los tokens
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -25,12 +23,7 @@ t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_ignore = ' \t'
-
-# Manejo de números
-def t_NUMBER(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
+t_NUMBER = r'\d+(\.\d+)?'  
 
 def t_error(t):
     print(f"Carácter ilegal: {t.value[0]}")
@@ -38,12 +31,13 @@ def t_error(t):
 
 lexer = lex.lex()
 
-# Gramática y árbol de sintaxis
 def p_expression_binop(p):
     '''expression : expression PLUS term
                   | expression MINUS term'''
     p[0] = ('BINOP', p[2], p[1], p[3])
-
+def p_number(p):
+    'number : NUMBER'
+    p[0] = float(p[1])
 def p_expression_term(p):
     'expression : term'
     p[0] = p[1]
@@ -85,26 +79,26 @@ def create_grammar_tree_visual(tree):
     def add_nodes_edges(tree, parent_id=None):
         if not tree:
             return
-        
+
         node_id = str(uuid.uuid4())
-        
+
         if tree[0] == 'NUM':
-            label = str(tree[1])  
+           label = str(tree[1])  
         elif tree[0] == 'BINOP':
-            label = tree[1]  
+           label = tree[1]  
         else:
-            label = tree[0] 
+           label = tree[0]
 
         graph.node(node_id, label)
 
         if parent_id:
-            graph.edge(parent_id, node_id)
+           graph.edge(parent_id, node_id)
 
-        if len(tree) > 2:
-            add_nodes_edges(tree[2], node_id)  # Lado izquierdo
-            add_nodes_edges(tree[3], node_id)  # Lado derecho
+        if len(tree) > 2:  
+           add_nodes_edges(tree[2], node_id)
+           add_nodes_edges(tree[3], node_id)
 
-    # Llama a la función recursiva para construir el grafo
+
     add_nodes_edges(tree)
     return graph
 
@@ -125,7 +119,7 @@ def generate_tree():
         return jsonify({'tree_image': 'tree.png'})
     except Exception as e:
         print(f"Error: {e}")
-        return jsonify({'error': 'Internal server error'}), 500
+        return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

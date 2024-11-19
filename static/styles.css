@@ -78,3 +78,8 @@ button#tree {
   max-height: 400px;
   object-fit: contain;
 }
+
+#dot {
+    background-color: #ccc;
+    color: #333;
+}
